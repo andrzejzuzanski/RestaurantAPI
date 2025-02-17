@@ -17,7 +17,7 @@ namespace RestaurantAPI
             builder.Services.AddAuthorization();
             builder.Services.AddScoped<RestaurantSeeder>();
             builder.Services.AddControllers();
-
+            builder.Services.AddAutoMapper(System.Reflection.Assembly.GetExecutingAssembly());
             var app = builder.Build();
 
             using var scope = app.Services.CreateScope();
