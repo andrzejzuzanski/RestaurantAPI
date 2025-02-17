@@ -16,6 +16,7 @@ namespace RestaurantAPI
             // Add services to the container.
             builder.Services.AddAuthorization();
             builder.Services.AddScoped<RestaurantSeeder>();
+            builder.Services.AddControllers();
 
             var app = builder.Build();
 
@@ -27,8 +28,13 @@ namespace RestaurantAPI
             // Configure the HTTP request pipeline.
 
             app.UseHttpsRedirection();
+            //app.UseAuthorization();
+            app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
 
             app.Run();
         }
