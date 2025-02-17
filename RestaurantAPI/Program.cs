@@ -15,9 +15,14 @@ namespace RestaurantAPI
 
             // Add services to the container.
             builder.Services.AddAuthorization();
-
+            builder.Services.AddScoped<RestaurantSeeder>();
 
             var app = builder.Build();
+
+            using var scope = app.Services.CreateScope();
+            var seeder = scope.ServiceProvider.GetRequiredService<RestaurantSeeder>();
+
+            seeder.Seed();
 
             // Configure the HTTP request pipeline.
 
