@@ -9,9 +9,9 @@ namespace RestaurantAPI
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            //Add connection to SQLite configuration
+            //Add connection to SQLServer configuration
             builder.Services.AddDbContext<RestaurantDbContext>(
-                options => options.UseSqlite(builder.Configuration.GetConnectionString("RestaurantDB")));
+                options => options.UseSqlServer(builder.Configuration.GetConnectionString("RestaurantDB")));
 
             // Add services to the container.
             builder.Services.AddAuthorization();
