@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
 using RestaurantAPI.Entities;
+using RestaurantAPI.Middleware;
 using RestaurantAPI.Services;
 
 namespace RestaurantAPI
@@ -22,6 +23,7 @@ namespace RestaurantAPI
             builder.Services.AddControllers();
             builder.Services.AddAutoMapper(System.Reflection.Assembly.GetExecutingAssembly());
             builder.Services.AddScoped<IRestaurantService, RestaurantService>();
+            builder.Services.AddScoped<ErrorHandlingMiddleware>();
 
             //NLog configuration
             builder.Logging.ClearProviders();
@@ -36,6 +38,7 @@ namespace RestaurantAPI
 
             // Configure the HTTP request pipeline.
 
+            app.UseMiddleware<ErrorHandlingMiddleware>();
             app.UseHttpsRedirection();
             app.UseRouting();
             app.MapControllers();
