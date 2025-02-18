@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE {{RestaurantAPI_HostAddress}}/api/restaurants/5
+DELETE {{RestaurantAPI_HostAddress}}/api/restaurants/9
 
 ###
 PUT {{RestaurantAPI_HostAddress}}/api/restaurants/5

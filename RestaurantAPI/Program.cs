@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using NLog;
+using NLog.Web;
 using RestaurantAPI.Entities;
 using RestaurantAPI.Services;
 
@@ -20,6 +22,10 @@ namespace RestaurantAPI
             builder.Services.AddControllers();
             builder.Services.AddAutoMapper(System.Reflection.Assembly.GetExecutingAssembly());
             builder.Services.AddScoped<IRestaurantService, RestaurantService>();
+
+            //NLog configuration
+            builder.Logging.ClearProviders();
+            builder.Host.UseNLog();
 
             var app = builder.Build();
 
