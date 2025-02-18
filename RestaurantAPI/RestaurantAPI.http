@@ -3,4 +3,32 @@
 GET {{RestaurantAPI_HostAddress}}/api/restaurants/
 
 ###
-GET {{RestaurantAPI_HostAddress}}/api/restaurants/2
+GET {{RestaurantAPI_HostAddress}}/api/restaurants/5
+
+###
+POST {{RestaurantAPI_HostAddress}}/api/restaurants/
+Content-Type: application/json
+
+{
+  "name": "Test Name 3",
+  "description": "Test Description 3",
+  "category": "Test Category 3",
+  "hasDelivery": true,
+  "city": "Test City 3",
+  "street": "Test Street 3",
+  "postalCode": "33-333"
+}
+
+###
+DELETE {{RestaurantAPI_HostAddress}}/api/restaurants/5
+
+###
+PUT {{RestaurantAPI_HostAddress}}/api/restaurants/5
+Content-Type: application/json
+
+{
+  "name": "Updated name",
+  "description": "Updated description",
+  "category": "Updated category",
+  "hasDelivery": false
+}

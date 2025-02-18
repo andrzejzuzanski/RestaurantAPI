@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using RestaurantAPI.Entities;
+using RestaurantAPI.Services;
 
 namespace RestaurantAPI
 {
@@ -18,6 +19,8 @@ namespace RestaurantAPI
             builder.Services.AddScoped<RestaurantSeeder>();
             builder.Services.AddControllers();
             builder.Services.AddAutoMapper(System.Reflection.Assembly.GetExecutingAssembly());
+            builder.Services.AddScoped<IRestaurantService, RestaurantService>();
+
             var app = builder.Build();
 
             using var scope = app.Services.CreateScope();
@@ -28,13 +31,8 @@ namespace RestaurantAPI
             // Configure the HTTP request pipeline.
 
             app.UseHttpsRedirection();
-            //app.UseAuthorization();
             app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.MapControllers();
 
             app.Run();
         }
